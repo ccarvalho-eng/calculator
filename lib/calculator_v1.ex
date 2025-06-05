@@ -31,17 +31,14 @@ defmodule CalculatorV1 do
     %{value: val + v}
   end
 
-  @spec handle_command(state(), %{cmd: :sub, value: number()}) :: state()
   def handle_command(%{value: val}, %{cmd: :sub, value: v}) do
     %{value: val - v}
   end
 
-  @spec handle_command(state(), %{cmd: :mul, value: number()}) :: state()
   def handle_command(%{value: val}, %{cmd: :mul, value: v}) do
     %{value: val * v}
   end
 
-  @spec handle_command(state(), %{cmd: :div, value: number()}) :: state()
   def handle_command(%{value: val}, %{cmd: :div, value: v}) do
     if v == 0 do
       raise ArithmeticError, message: "Division by zero"
