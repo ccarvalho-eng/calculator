@@ -35,5 +35,16 @@ defmodule CalculatorV1Test do
         CalculatorV1.handle_command(state, command)
       end
     end
+
+    test "chains multiple operations using pipe" do
+      result =
+        %{value: 0}
+        |> CalculatorV1.handle_command(%{cmd: :add, value: 5})
+        |> CalculatorV1.handle_command(%{cmd: :mul, value: 3})
+        |> CalculatorV1.handle_command(%{cmd: :sub, value: 2})
+        |> CalculatorV1.handle_command(%{cmd: :div, value: 2})
+
+      assert result == %{value: 6.5}
+    end
   end
 end
